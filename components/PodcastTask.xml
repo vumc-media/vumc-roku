@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="PodcastTask" extends="Task">
+  <interface><field id="episodes" type="node" /></interface>
+  <script type="text/brightscript" uri="pkg:/components/PodcastTask.brs" />
+</component>

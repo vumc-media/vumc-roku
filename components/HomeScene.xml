@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HomeScene" extends="Scene">
+<interface>
+  <field id="deepLink" type="assocarray" onChange="onDeepLink" />
+  <field id="exitRequested" type="boolean" value="false" />
+</interface>
+<script type="text/brightscript" uri="pkg:/components/HomeScene.brs" />
+<children>
+  <!-- v112: pure black home canvas behind cards; keep featured hero art -->
+  <Rectangle width="1280" height="720" color="0x000000FF" />
+
+  <!-- v109 dynamic cinematic featured header: art right, readable details left -->
+  <Rectangle width="1280" height="274" color="0x07111DFF" />
+  <Poster id="homeHeroImage" uri="pkg:/images/worship-header.jpg"
+          translation="[610,52]" width="670" height="222" loadDisplayMode="scaleToZoom" opacity="0.94" />
+  <Rectangle width="840" height="274" color="0x07111DE0" />
+  <Rectangle width="120" height="274" translation="[840,0]" color="0x07111DAA" />
+  <Rectangle width="90" height="274" translation="[960,0]" color="0x07111D55" />
+  <Rectangle width="60" height="274" translation="[1050,0]" color="0x07111D22" />
+  <Label id="homeHeroTitle" text="WELCOME TO VERSAILLES UMC"
+         width="1060" height="42" translation="[58,68]"
+         font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+  <Label id="homeHeroSubtitle" text="Join us for worship every Sunday"
+         width="1060" height="28" translation="[60,111]"
+         font="font:MediumSystemFont" color="0xF2F5F8FF" />
+  <Label id="homeHeroDescription" text="Traditional 9:30 AM | Contemporary 10:30 AM"
+         width="1080" height="120" translation="[60,144]" wrap="true"
+         maxLines="6" font="font:SmallSystemFont" color="0xE0E7EDFF" />
+  <Label id="clock" text="" visible="false" width="180" height="32" translation="[1060,10]"
+         horizAlign="right" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+  <Animation id="heroFade" duration="0.28" repeat="false">
+    <FloatFieldInterpolator key="[0.0,1.0]" keyValue="[0.75,0.94]"
+                            fieldToInterp="homeHeroImage.opacity" />
+  </Animation>
+
+  <!-- v124 Home dashboard: Watch Live and Latest Streams; featured sermon metadata in hero -->
+  <Label id="homeStatus" text="Loading worship library..."
+         width="700" height="30" translation="[65,284]"
+         font="font:SmallSystemFont" color="0xBFD0D6FF" />
+  <RowList id="homeRows"
+           translation="[55,283]"
+           itemComponentName="HomeCard"
+           itemSize="[1170,360]"
+           rowItemSize="[[224,300]]"
+           rowItemSpacing="[[22,0]]"
+           rowLabelOffset="[[0,18]]"
+           numRows="1"
+           showRowLabel="[true]"
+           showRowCounter="[false]"
+           drawFocusFeedback="false"
+           rowLabelColor="0xFFFFFFFF"
+           rowFocusAnimationStyle="fixedFocusWrap"
+           vertFocusAnimationStyle="fixedFocus" />
+
+  <!-- About Us screen -->
+  <Group id="aboutScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Poster uri="pkg:/images/about-header.jpg" width="1280" height="170" loadDisplayMode="scaleToZoom" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+
+    <Poster uri="pkg:/images/logo.png" width="96" height="96"
+            translation="[55,24]" loadDisplayMode="scaleToFit" />
+    <Label text="ABOUT VERSAILLES UMC" width="700" height="55"
+           translation="[185,42]" font="font:LargeBoldSystemFont" />
+    <Label text="A Church Striving to Love Like Jesus"
+           width="760" height="38" translation="[188,96]"
+           font="font:MediumSystemFont" color="0xD7E4E8FF" />
+    <Label text="Press BACK to return home" width="320" height="30"
+           translation="[900,105]" horizAlign="right"
+           font="font:SmallSystemFont" color="0xB8C6CBFF" />
+
+    <Rectangle width="1120" height="465" translation="[80,185]" color="0x102A3ACC" />
+
+    <Label text="OUR MISSION"
+           width="1030" height="36" translation="[120,210]"
+           font="font:MediumBoldSystemFont" color="0xE6B85CFF" />
+    <Label text="Making disciples of Jesus Christ for the transformation of the world."
+           width="1030" height="34" translation="[120,250]"
+           font="font:MediumSystemFont" />
+
+    <Rectangle width="1030" height="1" translation="[120,294]" color="0x5D737CFF" />
+
+    <Label text="WHAT DOES IT MEAN TO LOVE LIKE JESUS?"
+           width="1030" height="40" translation="[120,318]"
+           font="font:MediumBoldSystemFont" color="0x7ED5F5FF" />
+    <Label text="Love Like Jesus means we are learning to follow Christ in practical, everyday ways. It shapes"
+           width="1030" height="30" translation="[120,365]"
+           font="font:SmallSystemFont" />
+    <Label text="how we worship, how we welcome, how we serve, how we speak, and how we walk with people"
+           width="1030" height="30" translation="[120,398]"
+           font="font:SmallSystemFont" />
+    <Label text="when life is messy, complicated, or uncomfortable."
+           width="1030" height="30" translation="[120,431]"
+           font="font:SmallSystemFont" />
+
+    <Label text="WORSHIP   •   WELCOME   •   SERVE   •   GROW"
+           width="1030" height="36" translation="[120,472]"
+           font="font:MediumBoldSystemFont" color="0x66D477FF" />
+
+    <Rectangle width="1030" height="1" translation="[120,518]" color="0x5D737CFF" />
+
+    <Label text="WORSHIP SERVICES"
+           width="430" height="34" translation="[120,535]"
+           font="font:MediumBoldSystemFont" color="0x7ED5F5FF" />
+    <Label text="Traditional Worship  •  9:30 AM"
+           width="450" height="30" translation="[120,572]"
+           font="font:SmallSystemFont" />
+    <Label text="Contemporary Worship  •  10:30 AM"
+           width="450" height="30" translation="[120,603]"
+           font="font:SmallSystemFont" />
+
+    <Rectangle width="1" height="96" translation="[610,535]" color="0x5D737CFF" />
+
+    <Label text="VISIT US"
+           width="280" height="34" translation="[655,535]"
+           font="font:MediumBoldSystemFont" color="0xE6B85CFF" />
+    <Label text="230 Paynes Mill Road  •  Versailles, KY 40383"
+           width="500" height="30" translation="[655,572]"
+           font="font:SmallSystemFont" />
+    <Label text="versaillesumc.org  •  (859) 873-4304"
+           width="500" height="30" translation="[655,603]"
+           font="font:SmallSystemFont" color="0xC8D8DEFF" />
+  </Group>
+
+  <!-- Video Library screen -->
+  <Group id="videoLibraryScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Poster uri="pkg:/images/logo.png" width="96" height="96"
+            translation="[55,24]" loadDisplayMode="scaleToFit" />
+    <Label text="VIDEO LIBRARY" width="650" height="55"
+           translation="[185,42]" font="font:LargeBoldSystemFont" />
+    <Label text="Worship services organized by service type"
+           width="720" height="38" translation="[188,96]"
+           font="font:MediumSystemFont" color="0xD7E4E8FF" />
+    <Label text="Press BACK to return home" width="320" height="30"
+           translation="[900,105]" horizAlign="right"
+           font="font:SmallSystemFont" color="0xB8C6CBFF" />
+
+    <Label id="videoStatus" text="Loading videos..." width="900" height="36"
+           translation="[90,170]" font="font:SmallSystemFont" color="0xBFD0D6FF" />
+
+    <MarkupGrid id="seriesGrid"
+                translation="[78,205]"
+                itemComponentName="CompactHomeCard"
+                drawFocusFeedback="false"
+                itemSize="[224,300]"
+                itemSpacing="[32,20]"
+                numRows="1"
+                numColumns="3" />
+  </Group>
+
+  <!-- Sermon-series folders within the Sermons category -->
+  <Group id="sermonSeriesScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Poster uri="pkg:/images/logo.png" width="96" height="96"
+            translation="[55,24]" loadDisplayMode="scaleToFit" />
+    <Label id="browseTitle" text="SERMON SERIES" width="650" height="55"
+           translation="[185,42]" font="font:LargeBoldSystemFont" />
+    <Label id="browseSubtitle" text="Choose a series" width="720" height="38"
+           translation="[188,96]" font="font:MediumSystemFont" color="0xD7E4E8FF" />
+    <Label text="Press BACK to return to the video library" width="450" height="30"
+           translation="[770,105]" horizAlign="right"
+           font="font:SmallSystemFont" color="0xB8C6CBFF" />
+    <MarkupGrid id="sermonSeriesGrid"
+                translation="[78,205]"
+                itemComponentName="CompactHomeCard"
+                drawFocusFeedback="false"
+                itemSize="[224,300]"
+                itemSpacing="[32,20]"
+                numRows="1"
+                numColumns="3" />
+  </Group>
+
+  <!-- Videos within the selected series -->
+  <Group id="seriesVideosScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Poster uri="pkg:/images/logo.png" width="96" height="96"
+            translation="[55,24]" loadDisplayMode="scaleToFit" />
+    <Label id="seriesTitle" text="SERIES" width="760" height="55"
+           translation="[185,42]" font="font:LargeBoldSystemFont"
+           ellipsizeOnBoundary="true" />
+    <Label text="Choose a service to watch" width="620" height="38"
+           translation="[188,96]" font="font:MediumSystemFont" color="0xD7E4E8FF" />
+    <Label text="Press BACK to return to the previous screen" width="420" height="30"
+           translation="[860,105]" horizAlign="right"
+           font="font:SmallSystemFont" color="0xB8C6CBFF" />
+
+    <MarkupList id="videoList"
+                translation="[90,195]"
+                itemComponentName="VideoRow"
+                itemSize="[1090,92]"
+                itemSpacing="[0,8]"
+                numRows="2" />
+  </Group>
+
+  <!-- Podcast: restrained 190px banner and five visible episodes -->
+  <Group id="podcastScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x07131EFF" />
+    <Poster uri="pkg:/images/podcast-header-muted.jpg" width="1280" height="720"
+            translation="[0,-35]" loadDisplayMode="scaleToFit" />
+    <Rectangle width="1280" height="190" color="0x06172266" />
+    <Rectangle width="1280" height="530" translation="[0,190]" color="0x07131EFF" />
+    <Rectangle width="7" height="530" translation="[0,190]" color="0x40C9C7FF" />
+    <Label id="podcastStatus" text="Loading episodes..." width="1070" height="29"
+           translation="[70,196]" font="font:SmallSystemFont" color="0xBFD0D6FF" />
+    <MarkupList id="podcastList" translation="[70,231]" itemComponentName="PodcastRow"
+                itemSize="[1140,76]" itemSpacing="[0,5]" numRows="5" />
+    <Rectangle width="1280" height="48" translation="[0,672]" color="0x102C3CFF" />
+    <Label text="OK  OPEN / PLAY" width="420" height="26" translation="[74,682]"
+           font="font:SmallSystemFont" color="0x91D7D8FF" />
+    <Label text="BACK  PREVIOUS SCREEN" width="420" height="26" translation="[790,682]"
+           horizAlign="right" font="font:SmallSystemFont" color="0xD7E4E8FF" />
+  </Group>
+
+
+  <!-- Connect With Us ministry cards -->
+  <Group id="connectScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Rectangle width="1280" height="170" color="0x000000FF" />
+    <Poster uri="pkg:/images/logo.png" width="96" height="96"
+            translation="[55,24]" loadDisplayMode="scaleToFit" />
+    <Label id="connectHeading" text="CONNECT WITH US" width="650" height="55"
+           translation="[185,42]" font="font:LargeBoldSystemFont" />
+    <Label id="connectSubtitle" text="Connect with Versailles UMC"
+           width="720" height="38" translation="[188,96]"
+           font="font:MediumSystemFont" color="0xD7E4E8FF" />
+    <Label text="Press BACK to return home" width="360" height="30"
+           translation="[860,105]" horizAlign="right"
+           font="font:SmallSystemFont" color="0xB8C6CBFF" />
+    <MarkupGrid id="connectGrid"
+                translation="[78,180]"
+                itemComponentName="CompactHomeCard"
+                drawFocusFeedback="false"
+                itemSize="[224,300]"
+                itemSpacing="[32,24]"
+                numRows="2"
+                numColumns="3"
+                horizFocusAnimationStyle="floatingFocus"
+                vertFocusAnimationStyle="fixedFocus" />
+  </Group>
+
+  <!-- Full-screen ministry information and scannable QR code -->
+  <Group id="connectDetailScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Poster id="connectDetailPoster" width="1280" height="720"
+            loadDisplayMode="scaleToFit" />
+  </Group>
+
+  <!-- Cloudflare Stream live player and off-air status -->
+  <Group id="livePlayerScreen" visible="false">
+    <Rectangle width="1280" height="720" color="0x000000FF" />
+    <Video id="liveVideo" width="1280" height="720" />
+    <Group id="liveOverlay" visible="true">
+      <!-- Real VUMC worship photograph with a consistent full-frame darkening layer. -->
+      <Poster id="liveWallpaper" uri="pkg:/images/live-worship-photo-dark.jpg"
+              width="1280" height="720" loadDisplayMode="scaleToZoom" />
+      <Rectangle width="1280" height="720" color="0x090D1B38" />
+      <!-- Connecting / error status; hidden when the countdown is displayed. -->
+      <Label id="liveService" text="LIVE WORSHIP" width="900" height="60"
+             translation="[190,260]" horizAlign="center"
+             font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+      <Label id="liveStatus" text="Checking for the live service..."
+             width="1080" height="245" translation="[100,350]"
+             horizAlign="center" vertAlign="center" wrap="true"
+             font="font:MediumSystemFont" color="0xD7E4E8FF" />
+      <Group id="nextWorshipPanel" visible="false">
+        <Rectangle width="1280" height="290" translation="[0,430]" color="0x03091490" />
+        <Rectangle width="75" height="3" translation="[300,374]" color="0xE4B76CFF" />
+        <Rectangle width="75" height="3" translation="[905,374]" color="0xE4B76CFF" />
+        <Label text="JOIN US FOR WORSHIP" translation="[385,352]" width="510" height="42"
+               horizAlign="center" font="font:MediumBoldSystemFont" color="0xFFFFFFFF" />
+        <Label text="Next Worship Service" translation="[150,398]" width="980" height="62"
+               horizAlign="center" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+        <Label id="nextWorshipName" text="Next worship service" translation="[130,471]"
+               width="1020" height="38" horizAlign="center" font="font:MediumBoldSystemFont" color="0xF2C47BFF" />
+        <Label id="nextWorshipTime" text="" translation="[130,510]" width="1020" height="34"
+               horizAlign="center" font="font:MediumSystemFont" color="0xF2C47BFF" />
+        <Label text="SERVICE BEGINS IN" translation="[190,553]" width="900" height="30"
+               horizAlign="center" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+        <!-- Larger countdown tiles; number and unit are tightly stacked. -->
+        <Group translation="[202,578]">
+          <Rectangle translation="[0,0]" width="204" height="132" color="0x111925DD" />
+          <Rectangle translation="[220,0]" width="204" height="132" color="0x111925DD" />
+          <Rectangle translation="[440,0]" width="204" height="132" color="0x111925DD" />
+          <Rectangle translation="[660,0]" width="204" height="132" color="0x111925DD" />
+          <Label id="nextDays" text="00" translation="[0,7]" width="204" height="70" horizAlign="center" vertAlign="center" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+          <Label id="nextHours" text="00" translation="[220,7]" width="204" height="70" horizAlign="center" vertAlign="center" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+          <Label id="nextMinutes" text="00" translation="[440,7]" width="204" height="70" horizAlign="center" vertAlign="center" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+          <Label id="nextSeconds" text="00" translation="[660,7]" width="204" height="70" horizAlign="center" vertAlign="center" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+          <Label text="DAYS" translation="[0,74]" width="204" height="40" horizAlign="center" vertAlign="center" font="font:MediumBoldSystemFont" color="0xF2C47BFF" />
+          <Label text="HOURS" translation="[220,74]" width="204" height="40" horizAlign="center" vertAlign="center" font="font:MediumBoldSystemFont" color="0xF2C47BFF" />
+          <Label text="MINUTES" translation="[440,74]" width="204" height="40" horizAlign="center" vertAlign="center" font="font:MediumBoldSystemFont" color="0xF2C47BFF" />
+          <Label text="SECONDS" translation="[660,74]" width="204" height="40" horizAlign="center" vertAlign="center" font="font:MediumBoldSystemFont" color="0xF2C47BFF" />
+        </Group>
+      </Group>
+      <BusySpinner id="liveSpinner"
+                   uri="pkg:/images/loading-spinner.png"
+                   translation="[612,500]"
+                   spinInterval="0.25"
+                   control="stop" />
+
+    </Group>
+    <!-- Recording-only quality-preparation cover: no icons, logo, or spinner. -->
+    <Group id="recordingLoadingOverlay" visible="false">
+      <Rectangle width="1280" height="720" color="0x0B0B0EFF" />
+      <Label text="Loading Worship Service" translation="[140,270]"
+             width="1000" height="68" horizAlign="center" vertAlign="center"
+             font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+      <Label text="Please wait." translation="[140,352]"
+             width="1000" height="46" horizAlign="center" vertAlign="center"
+             font="font:MediumSystemFont" color="0xD5D5D5FF" />
+      <Label text="Service will begin shortly." translation="[140,407]"
+             width="1000" height="46" horizAlign="center" vertAlign="center"
+             font="font:MediumSystemFont" color="0xD5D5D5FF" />
+    </Group>
+    <!-- Podcast player: artwork stays square; background is native Roku shapes -->
+    <Group id="podcastPlayerOverlay" visible="false">
+      <Rectangle width="1280" height="720" color="0x07131EFF" />
+      <Rectangle width="1280" height="130" color="0x102C3CFF" />
+      <Rectangle width="8" height="130" color="0x40C9C7FF" />
+      <Poster uri="pkg:/images/podcast-header.jpg" width="115" height="65" translation="[28,31]" loadDisplayMode="scaleToFit" />
+      <Label text="CHURCH BEYOND SUNDAY" width="980" height="52" translation="[160,28]" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+      <Label text="SERMON PODCAST  •  AUDIO EPISODE" width="940" height="30" translation="[162,83]" font="font:SmallSystemFont" color="0x91D7D8FF" />
+      <Rectangle width="332" height="332" translation="[75,184]" color="0x173547FF" />
+      <Poster id="podcastArtwork" width="308" height="308" translation="[87,196]" loadDisplayMode="scaleToFit" />
+      <Label text="NOW LISTENING" width="710" height="40" translation="[458,202]" font="font:MediumBoldSystemFont" color="0x40C9C7FF" />
+      <Label id="podcastNowTitle" text="Sermon podcast" width="700" height="220" translation="[456,252]" vertAlign="center" wrap="true" font="font:LargeBoldSystemFont" color="0xFFFFFFFF" />
+      <Rectangle width="1280" height="145" translation="[0,575]" color="0x102C3CFF" />
+      <Label id="podcastPlayState" text="PLAYING" width="250" height="34" translation="[74,580]" font="font:MediumBoldSystemFont" color="0x40C9C7FF" />
+      <Rectangle width="1110" height="8" translation="[85,624]" color="0x3C5865FF" />
+      <Rectangle id="podcastProgress" width="2" height="8" translation="[85,624]" color="0x40C9C7FF" />
+      <Label id="podcastElapsed" text="0:00" width="180" height="29" translation="[84,639]" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+      <Label id="podcastDuration" text="--:--" width="180" height="29" translation="[1016,639]" horizAlign="right" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+      <Label text="OK  Play/Pause     LEFT/RIGHT  Skip 15s     BACK  Episodes" width="1110" height="30" translation="[84,680]" font="font:SmallSystemFont" color="0xD7E4E8FF" />
+    </Group>
+  </Group>
+
+
+  <!-- v126: fixed top navigation bar, separate from sermon description. -->
+  <Rectangle width="1280" height="52" color="0x05070BFF" />
+  <Label id="topBarClock" text="" width="180" height="32" translation="[1060,10]" horizAlign="right" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+  <Group id="menuHint" visible="true">
+    <Rectangle width="146" height="42" translation="[58,5]" color="0x10151FD9" />
+    <Poster uri="pkg:/images/menu-chevron.png" width="16" height="24" translation="[76,14]" />
+    <Label text="MENU" width="95" height="34" translation="[99,9]" horizAlign="center" vertAlign="center"
+           font="font:SmallSystemFont" color="0xFFFFFFFF" />
+  </Group>
+  <Group id="sideMenu" visible="false" translation="[-340,0]">
+    <Rectangle width="1280" height="720" color="0x00000088" />
+    <Rectangle width="340" height="720" color="0x10151FFF" />
+    <Rectangle width="4" height="720" translation="[336,0]" color="0xA91C28FF" />
+    <Rectangle id="menuSelectionBg" translation="[16,136]" width="308" height="55" color="0xA91C28FF" />
+    <Poster uri="pkg:/images/menu-icons/home.png" width="27" height="27" translation="[33,150]" loadDisplayMode="scaleToFit" />
+    <Label text="Home" translation="[73,136]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/video.png" width="27" height="27" translation="[33,211]" loadDisplayMode="scaleToFit" />
+    <Label text="Watch Live" translation="[73,197]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/play.png" width="27" height="27" translation="[33,272]" loadDisplayMode="scaleToFit" />
+    <Label text="Latest Streams" translation="[73,258]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/podcast.png" width="27" height="27" translation="[33,333]" loadDisplayMode="scaleToFit" />
+    <Label text="Podcasts" translation="[73,319]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/users.png" width="27" height="27" translation="[33,394]" loadDisplayMode="scaleToFit" />
+    <Label text="Get Connected" translation="[73,380]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/mail.png" width="27" height="27" translation="[33,455]" loadDisplayMode="scaleToFit" />
+    <Label text="Subscribe" translation="[73,441]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/heart.png" width="27" height="27" translation="[33,516]" loadDisplayMode="scaleToFit" />
+    <Label text="Partner With Us" translation="[73,502]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Poster uri="pkg:/images/menu-icons/info.png" width="27" height="27" translation="[33,577]" loadDisplayMode="scaleToFit" />
+    <Label text="About Us" translation="[73,563]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Label text="RIGHT / BACK to close" width="300" height="28" translation="[20,666]"
+           horizAlign="center" font="font:SmallSystemFont" color="0xAEBAC7FF" />
+  </Group>
+
+
+</children>
+</component>

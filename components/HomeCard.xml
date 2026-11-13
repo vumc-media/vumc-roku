@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HomeCard" extends="Group">
+ <interface>
+  <field id="itemContent" type="node" onChange="showContent" />
+  <field id="itemHasFocus" type="boolean" onChange="showFocus" />
+  <field id="focusPercent" type="float" onChange="showFocusPercent" />
+ </interface>
+ <script type="text/brightscript" uri="pkg:/components/HomeCard.brs" />
+ <children>
+  <Rectangle id="background" width="224" height="300" translation="[0,0]" color="0x171717FF" />
+  <Poster id="poster" width="224" height="300" translation="[0,0]" loadDisplayMode="scaleToZoom" visible="false" />
+  <Rectangle id="shade" width="224" height="300" translation="[0,0]" color="0x00000066" />
+  <Rectangle id="titleBackdrop" width="224" height="43" translation="[0,210]" color="0x07111DE8" />
+  <Label id="title" width="204" height="43" translation="[10,210]" wrap="true" horizAlign="center" vertAlign="center" font="font:MediumBoldSystemFont" color="0xFFFFFFFF" />
+  <Poster id="recentBg" uri="pkg:/images/recently-added-pill.png" width="198" height="36" translation="[13,258]" visible="false" />
+  <Label id="recentText" text="Recently Added" width="198" height="36" translation="[13,258]" horizAlign="center" vertAlign="center" color="0xFFFFFFFF" visible="false">
+   <Font role="font" uri="font:SmallBoldSystemFont" size="18" />
+  </Label>
+  <Rectangle id="liveBadgeBg" width="83" height="34" translation="[131,13]" color="0xD51527FF" visible="false" />
+  <Label id="liveBadge" text="LIVE" width="83" height="34" translation="[131,13]" font="font:MediumBoldSystemFont" horizAlign="center" vertAlign="center" color="0xFFFFFFFF" visible="false" />
+  <Poster id="focusOutline" uri="pkg:/images/focus-sharp.png" width="224" height="300" opacity="0" />
+ </children>
+</component>

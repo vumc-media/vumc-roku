@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="VideoRow" extends="Group">
+  <interface>
+    <field id="itemContent" type="node" onChange="showContent" />
+    <field id="itemHasFocus" type="boolean" onChange="showFocus" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/VideoRow.brs" />
+  <children>
+    <Rectangle id="focusBg" width="1090" height="92" color="0x16455AFF" opacity="0.0" />
+    <Rectangle id="accent" width="6" height="92" color="0x55D4FFFF" opacity="0.0" />
+
+    <Poster id="thumb" width="128" height="72" translation="[20,10]" loadDisplayMode="scaleToFill" />
+    <Label id="title" width="840" height="40" translation="[174,10]"
+           font="font:MediumBoldSystemFont" color="0xFFFFFFFF"
+           ellipsizeOnBoundary="true" />
+    <Label id="series" width="840" height="28" translation="[174,49]"
+           font="font:SmallSystemFont" color="0x7ED5F5FF"
+           ellipsizeOnBoundary="true" />
+  </children>
+</component>
