@@ -1,0 +1,19 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Versailles UMC Sermons</title>
+    <link>https://archive.org/details/@versailles_umc_media/uploads</link>
+    <description>Sermon-only video archive from Versailles United Methodist Church.</description>
+    <item>
+      <title>Walk Humbly</title>
+      <link>https://archive.org/details/walk-humbly_20230626</link>
+      <guid isPermaLink="false">walk-humbly_20230626</guid>
+      <pubDate>Mon, 26 Jun 2023 18:29:13 GMT</pubDate>
+      <description>Micah 6:8 — Rev. William Herndon</description>
+      <enclosure url="https://archive.org/download/walk-humbly_20230626/Walk%20Humbly.mp4" length="561110823" type="video/mp4" />
+      <media:content url="https://archive.org/download/walk-humbly_20230626/Walk%20Humbly.mp4" type="video/mp4" medium="video" duration="1244" width="1280" height="720" />
+      <media:thumbnail url="https://archive.org/download/walk-humbly_20230626/__ia_thumb.jpg" />
+    </item>
+  </channel>
+</rss>
