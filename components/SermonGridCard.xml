@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="SermonGridCard" extends="Group">
+  <interface>
+    <field id="itemContent" type="node" onChange="showContent" />
+    <field id="itemHasFocus" type="boolean" onChange="showFocus" />
+    <field id="focusPercent" type="float" onChange="showFocus" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/SermonGridCard.brs" />
+  <children>
+    <Rectangle id="background" width="260" height="190" color="0x243C55FF" />
+    <Poster id="poster" width="260" height="146" loadDisplayMode="scaleToFit" />
+    <Rectangle width="260" height="44" translation="[0,146]" color="0x07111DFF" />
+    <Label id="title" translation="[8,148]" width="244" height="40"
+           font="font:SmallBoldSystemFont" color="0xFFFFFFFF"
+           horizAlign="center" vertAlign="center" wrap="true" maxLines="2" />
+    <Rectangle id="focusBorder" width="260" height="190" color="0x54D8FFFF" opacity="0.0" />
+  </children>
+</component>
