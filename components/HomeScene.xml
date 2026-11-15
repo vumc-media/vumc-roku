@@ -191,11 +191,14 @@
            translation="[860,105]" horizAlign="right"
            font="font:SmallSystemFont" color="0xB8C6CBFF" />
 
-    <MarkupList id="videoList"
-                translation="[90,195]"
-                itemComponentName="VideoRow"
-                itemSize="[1090,92]"
-                itemSpacing="[0,8]"
+    <!-- Beta: episode thumbnail grid; existing videoList navigation remains unchanged -->
+    <MarkupGrid id="videoList"
+                translation="[78,195]"
+                itemComponentName="CompactHomeCard"
+                drawFocusFeedback="false"
+                itemSize="[224,300]"
+                itemSpacing="[32,20]"
+                numColumns="4"
                 numRows="2" />
   </Group>
 
