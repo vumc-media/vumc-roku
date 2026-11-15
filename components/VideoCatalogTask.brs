@@ -20,12 +20,12 @@ function archiveTags(value as Dynamic) as Object
     if value = invalid then return result
     if type(value) = "roArray"
         for each v in value
-            for each part in String(v).Tokenize(";")
+            for each part in v.Tokenize(";")
                 result.Push(LCase(Trim(part)))
             end for
         end for
     else
-        for each part in String(value).Tokenize(";")
+        for each part in value.Tokenize(";")
             result.Push(LCase(Trim(part)))
         end for
     end if
@@ -36,13 +36,13 @@ function getSeriesName(value as Dynamic) as String
     if value = invalid then return ""
     if type(value) = "roArray"
         for each tag in value
-            for each part in String(tag).Tokenize(";")
+            for each part in tag.Tokenize(";")
                 part = Trim(part)
                 if Left(LCase(part), 7) = "series:" then return Trim(Mid(part, 8))
             end for
         end for
     else
-        for each part in String(value).Tokenize(";")
+        for each part in value.Tokenize(";")
             part = Trim(part)
             if Left(LCase(part), 7) = "series:" then return Trim(Mid(part, 8))
         end for
@@ -61,7 +61,7 @@ sub loadArchiveCatalog()
     root = CreateObject("roSGNode", "ContentNode")
     section = CreateObject("roSGNode", "ContentNode")
     section.title = "Sermons"
-    section.hdPosterUrl = "pkg:/images/sermons_tile.png"
+    section.hdPosterUrl = "pkg:/images/logo.png"
     section.addField("cardColor", "string", false)
     section.cardColor = "0x304C68FF"
     root.appendChild(section)
@@ -111,7 +111,11 @@ sub loadArchiveCatalog()
         posterUrl = "https://archive.org/download/" + identifier + "/__ia_thumb.jpg"
         episode = CreateObject("roSGNode", "ContentNode")
         episode.id = identifier
-        episode.title = metadata.title
+        if metadata.title <> invalid then
+            episode.title = metadata.title
+        else
+            episode.title = identifier
+        end if
         episode.url = videoUrl
         episode.streamFormat = "mp4"
         episode.hdPosterUrl = posterUrl
