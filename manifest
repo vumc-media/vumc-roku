@@ -1,7 +1,7 @@
 title=Versailles UMC
 major_version=1
-minor_version=136
-build_version=136
+minor_version=137
+build_version=137
 mm_icon_focus_fhd=pkg:/images/channel-poster.png
 mm_icon_focus_hd=pkg:/images/channel-icon-hd.png
 splash_screen_sd=pkg:/images/splash-sd.jpg
