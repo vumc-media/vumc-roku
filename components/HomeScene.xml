@@ -191,7 +191,6 @@
            translation="[860,105]" horizAlign="right"
            font="font:SmallSystemFont" color="0xB8C6CBFF" />
 
-    <!-- Beta: episode thumbnail grid; existing videoList navigation remains unchanged -->
     <MarkupGrid id="videoList"
                 translation="[78,195]"
                 itemComponentName="CompactHomeCard"
@@ -376,7 +375,8 @@
     <Label text="Partner With Us" translation="[73,502]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
     <Poster uri="pkg:/images/menu-icons/info.png" width="27" height="27" translation="[33,577]" loadDisplayMode="scaleToFit" />
     <Label text="About Us" translation="[73,563]" width="240" height="55" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
-    <Label text="RIGHT / BACK to close" width="300" height="28" translation="[20,666]"
+    <Label text="Sermon Series" translation="[73,624]" width="240" height="50" horizAlign="left" vertAlign="center" font="font:MediumSystemFont" color="0xFFFFFFFF" />
+    <Label text="RIGHT / BACK to close" width="300" height="22" translation="[20,692]"
            horizAlign="center" font="font:SmallSystemFont" color="0xAEBAC7FF" />
   </Group>
 
