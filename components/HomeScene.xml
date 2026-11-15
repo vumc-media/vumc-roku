@@ -167,12 +167,12 @@
            font="font:SmallSystemFont" color="0xB8C6CBFF" />
     <MarkupGrid id="sermonSeriesGrid"
                 translation="[78,205]"
-                itemComponentName="CompactHomeCard"
+                itemComponentName="SermonGridCard"
                 drawFocusFeedback="false"
-                itemSize="[224,300]"
-                itemSpacing="[32,20]"
-                numRows="1"
-                numColumns="3" />
+                itemSize="[260,190]"
+                itemSpacing="[22,20]"
+                numRows="2"
+                numColumns="4" />
   </Group>
 
   <!-- Videos within the selected series -->
@@ -193,10 +193,10 @@
 
     <MarkupGrid id="videoList"
                 translation="[78,195]"
-                itemComponentName="CompactHomeCard"
+                itemComponentName="SermonGridCard"
                 drawFocusFeedback="false"
-                itemSize="[224,300]"
-                itemSpacing="[32,20]"
+                itemSize="[260,190]"
+                itemSpacing="[22,20]"
                 numColumns="4"
                 numRows="2" />
   </Group>
