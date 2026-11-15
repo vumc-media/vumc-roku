@@ -805,7 +805,7 @@ end sub
 
 sub onVideosLoaded()
     if m.catalogTask.videos = invalid
-        m.videoStatus.text = "Unable to load video library."
+        m.videoStatus.text = "Sermon catalog unavailable. Try again later."
         return
     end if
 
@@ -828,7 +828,7 @@ sub onVideosLoaded()
     if m.catalogTask.videos.getChildCount() = 0
         m.videoStatus.text = "No videos are available yet."
     else
-        m.videoStatus.text = "Choose a worship category and press OK"
+        m.videoStatus.text = "Choose Sermons and press OK"
         m.seriesGrid.jumpToItem = 0
         m.seriesGrid.setFocus(true)
 
@@ -907,7 +907,7 @@ sub showBrowseNode(node as Object)
     else if normalizedTitle = "library"
         m.browseSubtitle.text = "Choose an archived sermon series"
     else
-        m.browseSubtitle.text = "Choose Traditional or Contemporary Worship"
+        m.browseSubtitle.text = "Choose a sermon series"
     end if
 
     m.sermonSeriesGrid.content = node
@@ -1307,16 +1307,14 @@ end sub
 
 sub moveSideMenuSelection(delta as Integer)
     nextIndex = m.menuIndex + delta
-    if nextIndex < 0 then nextIndex = 7
-    if nextIndex > 7 then nextIndex = 0
+    if nextIndex < 0 then nextIndex = 8
+    if nextIndex > 8 then nextIndex = 0
     m.menuIndex = nextIndex
     if m.menuSelectionBg <> invalid then m.menuSelectionBg.translation = [16, 136 + (m.menuIndex * 61)]
 end sub
 
 sub chooseSideMenuItem()
-    ' Route menu destinations to actual, implemented channel features.
-    ' In particular, do not call openLibraryTarget(): its VideoCatalogTask
-    ' component is absent from this sideload package.
+    ' Beta: Sermon Series uses the Archive.org VideoCatalogTask.
     selected = m.menuIndex
     ' Close the currently displayed section before routing to another one.
     ' Otherwise the old full-screen Group may obscure the new destination.
@@ -1343,6 +1341,8 @@ sub chooseSideMenuItem()
         showStayConnectedChoice()
     else if selected = 6
         openPartner()
+    else if selected = 8
+        openVideoLibrary()
     else if selected = 7
         m.mode = "about"
         m.aboutScreen.visible = true
