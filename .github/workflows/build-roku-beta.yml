@@ -1,0 +1,28 @@
+name: Build Roku Beta ZIP
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - beta/archive-series-grid
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate XML and package Roku source
+        run: |
+          python3 - <<'PY'
+          import pathlib, xml.etree.ElementTree as ET
+          for p in pathlib.Path('components').glob('*.xml'):
+              ET.parse(p)
+          print('SceneGraph XML files parsed successfully')
+          PY
+          zip -q -r VUMC-Roku-Archive-Series-Beta.zip manifest source components images -x '*.DS_Store'
+          unzip -t VUMC-Roku-Archive-Series-Beta.zip | tail -1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VUMC-Roku-Archive-Series-Beta
+          path: VUMC-Roku-Archive-Series-Beta.zip
+          retention-days: 14
