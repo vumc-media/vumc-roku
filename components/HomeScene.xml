@@ -52,6 +52,16 @@
            rowFocusAnimationStyle="fixedFocusWrap"
            vertFocusAnimationStyle="fixedFocus" />
 
+  <!-- Home-only navigation header: render behind all full-screen destination pages. -->
+  <!-- v126: fixed top navigation bar, separate from sermon description. -->
+  <Rectangle width="1280" height="52" color="0x05070BFF" />
+  <Label id="topBarClock" text="" width="180" height="32" translation="[1060,10]" horizAlign="right" font="font:SmallSystemFont" color="0xFFFFFFFF" />
+  <Group id="menuHint" visible="true">
+    <Rectangle width="146" height="42" translation="[58,5]" color="0x10151FD9" />
+    <Poster uri="pkg:/images/menu-chevron.png" width="16" height="24" translation="[76,14]" />
+    <Label text="MENU" width="95" height="34" translation="[99,9]" horizAlign="center" vertAlign="center"
+           font="font:SmallSystemFont" color="0xFFFFFFFF" />
+  </Group>
   <!-- About Us screen -->
   <Group id="aboutScreen" visible="false">
     <Rectangle width="1280" height="720" color="0x000000FF" />
@@ -345,15 +355,6 @@
   </Group>
 
 
-  <!-- v126: fixed top navigation bar, separate from sermon description. -->
-  <Rectangle width="1280" height="52" color="0x05070BFF" />
-  <Label id="topBarClock" text="" width="180" height="32" translation="[1060,10]" horizAlign="right" font="font:SmallSystemFont" color="0xFFFFFFFF" />
-  <Group id="menuHint" visible="true">
-    <Rectangle width="146" height="42" translation="[58,5]" color="0x10151FD9" />
-    <Poster uri="pkg:/images/menu-chevron.png" width="16" height="24" translation="[76,14]" />
-    <Label text="MENU" width="95" height="34" translation="[99,9]" horizAlign="center" vertAlign="center"
-           font="font:SmallSystemFont" color="0xFFFFFFFF" />
-  </Group>
   <Group id="sideMenu" visible="false" translation="[-340,0]">
     <Rectangle width="1280" height="720" color="0x00000088" />
     <Rectangle width="340" height="720" color="0x10151FFF" />
