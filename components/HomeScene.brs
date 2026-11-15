@@ -800,10 +800,26 @@ sub loadVideoLibrary()
     m.videoList.content = CreateObject("roSGNode", "ContentNode")
     m.catalogTask = CreateObject("roSGNode", "VideoCatalogTask")
     m.catalogTask.observeField("videos", "onVideosLoaded")
+    if m.archiveWatchdog = invalid
+        m.archiveWatchdog = CreateObject("roSGNode", "Timer")
+        m.archiveWatchdog.duration = 18
+        m.archiveWatchdog.repeat = false
+        m.archiveWatchdog.observeField("fire", "onArchiveCatalogTimeout")
+        m.top.appendChild(m.archiveWatchdog)
+    end if
+    m.archiveWatchdog.control = "start"
     m.catalogTask.control = "RUN"
 end sub
 
+sub onArchiveCatalogTimeout()
+    if m.mode <> "videos" then return
+    if m.seriesGrid.content <> invalid and m.seriesGrid.content.getChildCount() > 0 then return
+    m.videoStatus.text = "Archive.org is taking too long. Press BACK and try again."
+end sub
+
 sub onVideosLoaded()
+    if m.archiveWatchdog <> invalid then m.archiveWatchdog.control = "stop"
+    if m.mode <> "videos" then return
     if m.catalogTask.videos = invalid
         m.videoStatus.text = "Sermon catalog unavailable. Try again later."
         return
