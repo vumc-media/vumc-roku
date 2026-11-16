@@ -67,7 +67,7 @@ sub loadArchiveCatalog()
     section.cardColor = "0x304C68FF"
     root.appendChild(section)
 
-    searchUrl = "https://archive.org/advancedsearch.php?q=uploader%3A%22versaillesumcworshipteam%40gmail.com%22%20AND%20mediatype%3Amovies&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=publicdate&sort%5B%5D=publicdate%20desc&rows=100&output=json"
+    searchUrl = "https://archive.org/advancedsearch.php?q=uploader%3A%22versaillesumcworshipteam%40gmail.com%22%20AND%20mediatype%3Amovies&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=publicdate&sort%5B%5D=publicdate%20desc&rows=20&output=json"
     search = fetchArchiveJson(searchUrl)
     identifiers = []
     if search <> invalid and search.response <> invalid and search.response.docs <> invalid
