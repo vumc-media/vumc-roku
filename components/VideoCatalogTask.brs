@@ -10,7 +10,7 @@ function fetchArchiveJson(url as String) as Dynamic
     req.InitClientCertificates()
     req.SetUrl(url)
     req.EnableEncodings(true)
-    req.SetTimeout(4500)
+    req.SetTimeout(8000)
     body = req.GetToString()
     if body = invalid or body = "" then return invalid
     return ParseJson(body)
@@ -67,9 +67,9 @@ sub loadArchiveCatalog()
     section.cardColor = "0x304C68FF"
     root.appendChild(section)
 
-    searchUrl = "https://archive.org/advancedsearch.php?q=uploader%3A%22versaillesumcworshipteam%40gmail.com%22%20AND%20mediatype%3Amovies&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=publicdate&sort%5B%5D=publicdate%20desc&rows=12&output=json"
+    searchUrl = "https://archive.org/advancedsearch.php?q=uploader%3A%22versaillesumcworshipteam%40gmail.com%22%20AND%20mediatype%3Amovies&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=publicdate&sort%5B%5D=publicdate%20desc&rows=100&output=json"
     search = fetchArchiveJson(searchUrl)
-    identifiers = ["shipwrecked-but-not-sunk-acts-2713-44", "walk-humbly_20230626"]
+    identifiers = []
     if search <> invalid and search.response <> invalid and search.response.docs <> invalid
         for each doc in search.response.docs
             if doc.identifier <> invalid
@@ -81,6 +81,8 @@ sub loadArchiveCatalog()
             end if
         end for
     end if
+    ' Search indexing can lag behind Archive.org uploads. Known test IDs are fallback only.
+    if identifiers.Count() = 0 then identifiers = ["shipwrecked-but-not-sunk-acts-2713-44", "walk-humbly_20230626"]
 
     seriesNodes = {}
     for each identifier in identifiers
@@ -91,14 +93,8 @@ sub loadArchiveCatalog()
         metadata = data.metadata
         tags = archiveTags(metadata.subject)
         seriesName = getSeriesName(metadata.subject)
-        ' Known test items are allowed even while Archive.org subject edits are indexing.
-        if identifier = "shipwrecked-but-not-sunk-acts-2713-44"
-            if seriesName = "" then seriesName = "ACTS - The Church That Changed the World"
-        else if identifier = "walk-humbly_20230626"
-            if seriesName = "" then seriesName = "Love Like Jesus"
-        else
-            if not hasTag(tags, "type:sermon") or seriesName = "" then continue for
-        end if
+        ' Metadata determines inclusion and series. No hardcoded series assignments.
+        if not hasTag(tags, "type:sermon") or seriesName = "" then continue for
 
         filename = ""
         duration = 0
